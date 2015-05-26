@@ -1,0 +1,23 @@
+# Mac specific attr file
+.DS_Store
+
+# Editor tmp files
+*swp
+\#*\#
+*~
+
+# Python Project Files
+.project
+.pydevproject
+
+# Python env files
+.Python
+env/
+build/
+dist/
+*.egg
+*.egg-info/
+target/
+
+# Python pip files
+pip-log.txt
