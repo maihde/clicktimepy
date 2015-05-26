@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # A simple library to interfaces with the ClickTime API as documented
-# at http://app.clicktime.com/api/1.0/help
+# at http://app.clicktime.com/api/1.3/help
 #
 # Copyright 2012 Michael Ihde
 #
@@ -34,7 +34,7 @@ class ClickTime(object):
     """
     
     SERVER = "app.clicktime.com"
-    URL_BASE = "/api/1.0"
+    URL_BASE = "/api/1.3"
     
     def __init__(self, username, password):
         auth = base64.encodestring("%s:%s" % (username, password))[:-1] # remove the extra newline
@@ -87,7 +87,7 @@ class ClickTime(object):
         
     def session(self):
         """
-        http://app.clicktime.com/api/1.0/help#GET_Session
+        http://app.clicktime.com/api/1.3/help#GET_Session
         """
         data, status, reason = self._get("Session")
         data = self._parse(data, None)
@@ -95,7 +95,7 @@ class ClickTime(object):
     
     def company(self, company_id=None):
         """
-        http://app.clicktime.com/api/1.0/help#GET_Company
+        http://app.clicktime.com/api/1.3/help#GET_Company
         """
         if company_id == None:
             company_id = self.CompanyID
@@ -105,7 +105,7 @@ class ClickTime(object):
 
     def user(self, company_id=None, user_id=None):
         """
-        http://app.clicktime.com/api/1.0/help#GET_User
+        http://app.clicktime.com/api/1.3/help#GET_User
         """
         if company_id == None:
             company_id = self.CompanyID
@@ -117,7 +117,7 @@ class ClickTime(object):
         
     def clients(self, client_id=None):
         """
-        http://app.clicktime.com/api/1.0/help#GET_ClientsForUser
+        http://app.clicktime.com/api/1.3/help#GET_ClientsForUser
         
         Per the documentations, only supports listing clients for the requesting user.
         
@@ -135,7 +135,7 @@ class ClickTime(object):
     
     def jobs(self, job_number=None, with_child_ids=True):
         """
-        http://app.clicktime.com/api/1.0/help#GET_JobsForUser
+        http://app.clicktime.com/api/1.3/help#GET_JobsForUser
         
         Per the documentations, only supports listing clients for the requesting user.
         
@@ -156,7 +156,7 @@ class ClickTime(object):
     
     def tasks(self, task_number=None):
         """
-        http://app.clicktime.com/api/1.0/help#GET_TasksForUser
+        http://app.clicktime.com/api/1.3/help#GET_TasksForUser
         
         Per the documentations, only supports listing clients for the requesting user.
         
@@ -174,7 +174,7 @@ class ClickTime(object):
     
     def timeentires(self, startdate=None, enddate=None):
         """
-        http://app.clicktime.com/api/1.0/help#GET_TimeEntries
+        http://app.clicktime.com/api/1.3/help#GET_TimeEntries
         """
         url = "Companies/%s/Users/%s/Jobs" % (self.CompanyID, self.UserID)
         if startdate != None:
@@ -199,7 +199,7 @@ class ClickTime(object):
     
     def create_timeentry(self, job_id, task_id, hours, date=None, comment=None, break_time=None):
         """
-        http://app.clicktime.com/api/1.0/help#POST_CreateTimeEntry
+        http://app.clicktime.com/api/1.3/help#POST_CreateTimeEntry
         """
         if date == None:
             date = datetime.datetime.today()
@@ -303,3 +303,4 @@ if __name__ == "__main__":
             ct.create_timeentry(job_id, task_id, hours, date, comment)
         else:
             parser.error("Unknown command '%s'" % action)
+
